@@ -1,28 +1,29 @@
-import { useState } from 'react'
+import { useEffect } from 'react';
+import Header from './components/Header';
+import HeroSection from './components/HeroSection';
+import QuickStats from './components/QuickStats';
+import TournamentGrid from './components/TournamentGrid';
+import BottomNav from './components/BottomNav';
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  useEffect(() => {
+    document.body.classList.add('bg-[#0b0f1a]', 'text-white');
+    return () => {
+      document.body.classList.remove('bg-[#0b0f1a]', 'text-white');
+    };
+  }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">
-          Vibe Coding Platform
-        </h1>
-        <p className="text-gray-600 mb-6">
-          Your AI-powered development environment
-        </p>
-        <div className="text-center">
-          <button
-            onClick={() => setCount(count + 1)}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-          >
-            Count is {count}
-          </button>
+    <div className="min-h-screen flex flex-col">
+      <Header />
+      <main className="flex-1 pb-24">
+        <HeroSection />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-10">
+          <QuickStats />
+          <TournamentGrid />
         </div>
-      </div>
+      </main>
+      <BottomNav />
     </div>
-  )
+  );
 }
-
-export default App
